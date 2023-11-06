@@ -63,6 +63,7 @@ async function run() {
           .collection("college");
 
         // Perform the text search on the 'college' collection using the 'query' parameter
+        // Perform the text search on the 'college' collection using the 'query' parameter
         const colleges = await collegeCollections
           .find({ $text: { $search: query } })
           .toArray();
