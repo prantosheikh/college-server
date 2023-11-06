@@ -72,8 +72,8 @@ async function run() {
         res.status(500).json({ error: "Internal Server Error" });
       }
     });
-
-    // All Colleage 
+ 
+    // All Colleages 
     app.get("/collegeSection", async (req, res) => {
       const result = await collegeSectionCollections.find().toArray();
       res.send(result);
