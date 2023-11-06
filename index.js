@@ -33,6 +33,9 @@ async function run() {
     const collegeSectionCollections = client
       .db("CollegeBookingDB")
       .collection("collegeSection");
+    const collegeImageCollections = client
+      .db("CollegeBookingDB")
+      .collection("imageGallery");
 
     await collegeCollections.createIndex({ collegeName: "text" });
     await collegeCollections.createIndex({ keys: 1 });
@@ -70,10 +73,19 @@ async function run() {
       }
     });
 
+    // All Colleage 
     app.get("/collegeSection", async (req, res) => {
       const result = await collegeSectionCollections.find().toArray();
       res.send(result);
     });
+
+    // gallery photo
+    app.get("/collegeImageGallery", async (req, res) => {
+      const result = await collegeImageCollections.find().toArray();
+      res.send(result);
+    });
+
+
     app.get("/review", async (req, res) => {
       // const options = {
       //   // Include only the `title` and `imdb` fields in each returned document
