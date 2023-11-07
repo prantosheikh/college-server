@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-// jj
+
 const app = express();
 const cors = require("cors");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
@@ -30,6 +30,9 @@ async function run() {
     const collegeCollections = client
       .db("CollegeBookingDB")
       .collection("college");
+    const collegesCollections = client
+      .db("CollegeBookingDB")
+      .collection("Colleges");
     const collegeSectionCollections = client
       .db("CollegeBookingDB")
       .collection("collegeSection");
@@ -74,9 +77,14 @@ async function run() {
       }
     });
  
-    // All Colleages 
+    // Home Colleages 
     app.get("/collegeSection", async (req, res) => {
       const result = await collegeSectionCollections.find().toArray();
+      res.send(result);
+    });
+    // Home Colleages 
+    app.get("/colleges", async (req, res) => {
+      const result = await collegesCollections.find().toArray();
       res.send(result);
     });
 
